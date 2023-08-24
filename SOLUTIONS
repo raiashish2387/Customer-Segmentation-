@@ -1,0 +1,30 @@
+#Retrieve the email addresses of customers in uppercase.
+select upper(email) from customers;
+
+#Calculate the total payment amount for each customer.
+
+select c.customer_name, sum(p.payment_amount) from payments as p
+join customers as c on p.customer_id=c.customer_id
+group by 1;
+
+# Retrieve the customers who have made payments greater than the average payment amount.
+select c.customer_name,sum(p.payment_amount)
+from customers as c join payments as p on c.customer_id = p.customer_id
+where p.payment_amount > (select avg(payment_amount) from payments) 
+group by 1;
+
+# Retrieve the customers who have used the 'Internet' service.
+
+select customer_name from customers
+where service_type like upper("Internet");
+
+# Segment customers based on their payment history: 'Good', 'Average', or 'Poor'.
+
+select customer_id,customer_name,
+case when total_payment > 100 then 'good'
+     when total_payment > 50 then'avg'
+     else 'poor'
+     end as customer_seg
+from (select c.customer_name,p.customer_id, sum(p.payment_amount) as total_payment from payments as p
+join customers as c on p.customer_id=c.customer_id
+group by 1,2) as payment_summary ;
