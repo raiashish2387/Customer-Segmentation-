@@ -1,0 +1,5 @@
+1. Retrieve the email addresses of customers in uppercase.
+2. Calculate the total payment amount for each customer.
+3. Retrieve the customers who have made payments greater than the average payment amount.
+4. Retrieve the customers who have used the 'Internet' service.
+5. Segment customers based on their payment history: 'Good', 'Average', or 'Poor'.

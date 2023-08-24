@@ -1,0 +1,36 @@
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    email VARCHAR(100),
+    service_type VARCHAR(50),
+    last_payment_date DATE
+);
+
+CREATE TABLE payments (
+    payment_id INT PRIMARY KEY,
+    customer_id INT,
+    payment_amount DECIMAL(10, 2),
+    payment_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO customers (customer_id, customer_name, email, service_type, last_payment_date)
+VALUES
+    (1, 'John Doe', 'johndoe@example.com', 'Internet', '2023-01-10'),
+    (2, 'Jane Smith', 'janesmith@example.com', 'Mobile', '2023-01-15'),
+    (3, 'Mike Johnson', 'mikejohnson@example.com', 'Internet', '2023-01-05'),
+    (4, 'Emily Brown', 'emilybrown@example.com', 'Landline', '2023-01-20'),
+    (5, 'David Wilson', 'davidwilson@example.com', 'Internet', '2023-01-12');
+
+INSERT INTO payments (payment_id, customer_id, payment_amount, payment_date)
+VALUES
+    (1, 1, 50.00, '2023-01-05'),
+    (2, 2, 35.00, '2023-01-10'),
+    (3, 3, 75.00, '2023-01-15'),
+    (4, 4, 20.00, '2023-01-18'),
+    (5, 5, 60.00, '2023-01-12'),
+    (6, 1, 40.00, '2023-01-20'),
+    (7, 2, 30.00, '2023-01-25'),
+    (8, 3, 80.00, '2023-01-28'),
+    (9, 4, 25.00, '2023-01-22'),
+    (10, 5, 65.00, '2023-01-30');
